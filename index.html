@@ -166,10 +166,62 @@ select{appearance:auto}
 @media(max-width:380px){.form-grid{grid-template-columns:1fr}.calc-stat-grid{grid-template-columns:1fr}}
 @media print{.nav,.buttons,.toolbar,.toggle,.week-controls .btn,.footer{display:none!important}}
 .modal-back{position:fixed;inset:0;background:rgba(80,40,60,.45);display:flex;align-items:center;justify-content:center;z-index:200;padding:16px}.modal{background:#fff;border:2px solid #f5b9cd;border-radius:20px;padding:20px;max-width:380px;width:100%;box-shadow:0 12px 34px rgba(174,80,113,.3)}.modal-msg{margin:0 0 16px;font-size:16px;line-height:1.5;color:#65394b}.modal-row{display:flex;gap:10px;justify-content:flex-end}.modal-row .btn{flex:1}
+.pager{display:flex;align-items:center;gap:10px}.pager .btn{flex:0 0 auto;min-width:112px}.pg-label{flex:1;text-align:center;display:flex;flex-direction:column;min-width:0}.pg-label b{font-size:15px;color:#87465f}.pg-label span{font-size:14px;color:#6d4b5d;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media(max-width:700px){.pager .btn{min-width:0;padding:12px 10px;font-size:14px}}.chip.big{padding:16px;gap:14px;border-radius:16px}.chip.big input{width:28px;height:28px}.chip.big .chip-name{font-size:18px}.chip.big .chip-small{font-size:14px;margin-top:3px}.today-bar{margin:0 0 6px;padding:0 14px}.today-bar .pill{font-size:14px}
+
+/* ---- compact phone layout; Today fits one screen ---- */
+@media(max-width:700px){
+ .page{padding:8px 10px 12px}
+ .banner{padding:9px 10px;border-width:2px;border-radius:18px}
+ .banner h1{font-size:21px;letter-spacing:-.4px;text-shadow:1px 1px #fff,2px 2px #f7c0d1}
+ .banner p{margin:5px 0 0;padding:3px 12px;font-size:12px}
+ .nav a{min-height:54px;padding:6px 2px;font-size:12px}.nav .ico{font-size:22px}
+ .section{margin-top:10px;border-radius:18px}
+ .section-title{padding:10px 12px}.section-title h2{font-size:17px}.section-title p{font-size:12px;margin:2px 0 0}
+ .note{font-size:12.5px;padding:10px 12px 12px}
+ .btn{min-height:44px;padding:9px 14px}
+ .form-grid{gap:10px}.field{gap:4px}.field>span{font-size:12.5px}
+ input[type=text],input[type=number],input[type=date],select,textarea{min-height:44px;padding:9px 12px}
+ .readout{min-height:44px;padding:9px 12px}
+ .pcard{padding:12px}.peptide-list{padding:10px;gap:12px}
+ .chip.big{padding:8px 12px;gap:12px;margin:0}.chip.big input{width:26px;height:26px}
+ .chip.big .chip-name{font-size:16px}.chip.big .chip-small{font-size:12.5px;margin-top:1px}
+ body[data-route="today"]{height:100vh;height:100dvh;overflow:hidden;padding-bottom:0}
+ body[data-route="today"] .page{height:100%;display:flex;flex-direction:column;padding:8px 10px calc(68px + env(safe-area-inset-bottom))}
+ body[data-route="today"] [data-page="today"]{flex:1;min-height:0;display:flex;flex-direction:column}
+ body[data-route="today"] [data-page="today"] .section{flex:1;min-height:0;display:flex;flex-direction:column;margin-top:8px}
+ body[data-route="today"] [data-page="today"] .section-title .btn{min-height:36px;padding:6px 12px;font-size:13px}
+ body[data-route="today"] #todayList{flex:1;min-height:0;overflow-y:auto;display:grid;grid-template-columns:1fr;grid-auto-rows:minmax(54px,84px);align-content:start;gap:8px;padding:8px 10px}
+ body[data-route="today"] #todayList .small{display:none}
+ body[data-route="today"] #todayList .empty{min-height:0;grid-row:span 2}
+ body[data-route="today"] .footer{display:none}
+}
+
+/* tracker header: compact Add button beside the title */
+[data-page="tracker"] .section-title{flex-wrap:nowrap}
+[data-page="tracker"] .section-title>div:first-child{flex:1;min-width:0}
+.buttons.one .btn{flex:0 0 auto;white-space:nowrap}
+@media(max-width:700px){.buttons.one .btn{min-height:42px;padding:8px 14px;font-size:14px}}
+
+/* eye-catching exact syringe units */
+.calc-main{background:linear-gradient(135deg,#f46a97,#c3567b);color:#fff;text-align:center;padding:16px 12px;border-radius:20px;border:3px solid #fff;box-shadow:0 0 0 3px #f7a8c3,0 10px 26px rgba(195,86,123,.45);font-size:clamp(46px,14vw,72px);letter-spacing:-2px;text-shadow:0 2px 0 rgba(0,0,0,.12);transition:opacity .2s}
+.calc-main small{color:#ffe4ee;font-size:clamp(18px,5vw,26px);font-weight:800;letter-spacing:0;text-shadow:none}
+.calc-main.is-empty{opacity:.55;box-shadow:none}
+.calc-main.pop{animation:calcpop .45s ease}
+@keyframes calcpop{0%{transform:scale(.94)}60%{transform:scale(1.04)}100%{transform:scale(1)}}
+.syr-track{height:14px;border-radius:10px;background:#fff;border:2px solid #f2bfd1;overflow:hidden}
+.syr-fill{height:100%;width:0;background:linear-gradient(90deg,#ffb3cc,#f46a97);transition:width .4s}
+.syr-scale{display:flex;justify-content:space-between;font-size:12px;font-weight:800;color:#8a5174;margin-top:3px}
+@media(prefers-reduced-motion:reduce){.calc-main.pop{animation:none}.syr-fill{transition:none}}
 </style></head>
 <body><main class="page">
 <header class="banner"><span class="sticker left" aria-hidden="true">🐰</span><span class="sticker right" aria-hidden="true">🧸</span><h1 id="bTitle"></h1><p id="bSub"></p></header>
 <nav class="nav" id="nav" aria-label="Main navigation"></nav>
+<div data-page="today" hidden>
+  <section class="section">
+    <div class="section-title"><div><h2>📅 TODAY</h2><p id="todayInfo">What is on your list today.</p></div><a class="btn" href="#home">View week →</a></div>
+    <div class="peptide-list" id="todayList"></div>
+  </section>
+</div>
 <div data-page="home" hidden>
 
   <div class="topline">
@@ -199,16 +251,12 @@ select{appearance:auto}
 
   <section class="section">
     <div class="section-title">
-      <div><h2>🎀 MY PEPTIDE TRACKER</h2><p>Type a peptide name and choose a frequency. The weekly calendar updates automatically.</p></div>
-      <div class="buttons">
-        <button type="button" class="btn primary" id="addTop">＋ Add peptide</button>
-        <button type="button" class="btn" id="exampleButton">✿ Try AOD example</button>
-      </div>
+      <div><h2>🎀 MY PEPTIDE TRACKER</h2><p>Pick a frequency to build your schedule.</p></div>
+      <div class="buttons one"><button type="button" class="btn primary" id="addTop">＋ Add peptide</button></div>
     </div>
     <div class="peptide-list" id="list"></div>
-    <div class="add-wrap"><button type="button" class="btn primary" id="addBottom" style="width:100%">＋ Add another peptide</button></div>
     <div class="toolbar"><span class="small" id="saveState" aria-live="polite">Saved on this device</span><span class="push"></span><button type="button" class="btn ghost" id="resetButton">Clear entries</button></div>
-    <div class="note">✿ <b>Daily = Monday–Sunday.</b> <b>Weekdays = Monday–Friday.</b> <b>MWF = Mon, Wed, Fri.</b> <b>T TH S = Tue, Thu, Sat.</b> For Weekly or 2× weekly, tap the actual days. Start date is optional. Syringe units shown are arithmetic estimates from your entries, not dosage advice. Prescriber, source, lot and discard fields are for your own records — enter what your label or pharmacist states. Open the <a href="#calc">Calculator</a> for the full math breakdown or <a href="#summary">Summary</a> for a printable overview.</div>
+    <div class="note">✿ <b>Daily = Monday–Sunday.</b> <b>Weekdays = Monday–Friday.</b> <b>MWF = Mon, Wed, Fri.</b> <b>T TH S = Tue, Thu, Sat.</b> For Weekly or 2× weekly, tap the actual days. Start date is optional. Syringe units shown are arithmetic estimates from your entries, not dosage advice. The reconstitution date is for your own records. Open the <a href="#calc">Calculator</a> for the full math breakdown or <a href="#summary">Summary</a> for a printable overview.</div>
   </section>
 
   </div><div data-page="calc" hidden>
@@ -237,7 +285,8 @@ select{appearance:auto}
       </div>
       <aside class="calc-result" aria-live="polite">
         <p class="calc-eyebrow">♡ EXACT SYRINGE UNITS FOR ENTERED DOSE ♡</p>
-        <div id="calcUnitsResult" class="calc-main">— <small>units</small></div>
+        <div id="calcUnitsResult" class="calc-main is-empty">— <small>units</small></div>
+        <div class="syr" aria-hidden="true"><div class="syr-track"><div class="syr-fill" id="calcFill"></div></div><div class="syr-scale"><span>0</span><span id="calcMax">100 units</span></div></div>
         <div class="calc-stat-grid">
           <div class="calc-stat"><span>📏 Nearest whole mark</span><b id="calcNearest">—</b><span>amount at that mark</span></div>
           <div class="calc-stat"><span>⚖️ Rounding difference</span><b id="calcDeviation">—</b><span>vs. entered dose</span></div>
@@ -273,7 +322,7 @@ const SEED_DATA={"entries":[],"checks":{},"cycleFilter":false};
 const state={entries:[],checks:{},cycleFilter:false};
 const $=id=>document.getElementById(id);
 const makeId=()=>'p'+Date.now().toString(36)+Math.random().toString(36).slice(2,8);
-function emptyEntry(){return{id:makeId(),name:'',vialMg:'',dose:'',unit:'mcg',waterMl:'',frequency:'',days:[],start:'',onWeeks:'',offWeeks:'',notes:'',syringe:'100',prescriber:'',source:'',lot:'',reconDate:'',discardDate:''}}
+function emptyEntry(){return{id:makeId(),name:'',vialMg:'',dose:'',unit:'mcg',waterMl:'',frequency:'',days:[],start:'',onWeeks:'',offWeeks:'',notes:'',syringe:'100',reconDate:''}}
 function el(tag,cls,txt){const x=document.createElement(tag);if(cls)x.className=cls;if(txt!==undefined)x.textContent=txt;return x}
 
 /* ---------- storage ---------- */
@@ -327,6 +376,29 @@ function askConfirm(message,yesLabel,onYes){
   document.addEventListener('keydown',key);
   row.append(no,yes);box.append(msg,row);back.append(box);document.body.append(back);no.focus();
 }
+function initToday(){
+  function render(){
+    const list=$('todayList');list.textContent='';
+    const now=new Date(),ds=isoLocal(now),dow=now.getDay();
+    $('bSub').textContent=now.toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric'});
+    const items=state.entries.filter(e=>e.name.trim()&&daysFor(e).includes(dow)&&activeForDate(e,now));
+    const done=items.filter(e=>state.checks[ds+'__'+e.id]).length;
+    $('todayInfo').textContent=items.length?done+' of '+items.length+' done':'Nothing scheduled today';
+    if(!items.length){const em=el('div','empty');em.append(el('b','','🌼'),el('span','','Nothing to take today. Enjoy your rest day ♡'));list.append(em);return}
+    for(const e of items){
+      const k=ds+'__'+e.id,chip=el('label','chip big'),c=document.createElement('input');
+      c.type='checkbox';c.checked=!!state.checks[k];c.setAttribute('aria-label','Mark '+e.name+' done for today');
+      if(c.checked)chip.classList.add('checked');
+      c.addEventListener('change',()=>{state.checks[k]=c.checked;save();render()});
+      const info=el('span');info.append(el('span','chip-name',e.name));
+      if(e.dose)info.append(el('span','chip-small','Recorded dose: '+fmtDose(e)));
+      const u=syringeUnits(e);if(u&&u!=='Check inputs')info.append(el('span','chip-small','Syringe units*: '+u));
+      chip.append(c,info);list.append(chip);
+    }
+    list.append(el('p','small','*Arithmetic from your entries, not dosage advice. Tick a box when done.'));
+  }
+  return render;
+}
 function initHome(){let offset=0;
 function weekStart(){const n=new Date();n.setHours(12,0,0,0);return plusDays(n,-n.getDay()+offset*7)}
 function renderCalendar(){
@@ -369,14 +441,24 @@ $('cycleFilter').checked=state.cycleFilter;
 $('cycleFilter').onchange=e=>{state.cycleFilter=e.target.checked;save();renderCalendar()};
 return renderCalendar;}
 function initTracker(){
+  let cur=0;
 function field(label,control,cls){const l=el('label','field'+(cls?' '+cls:''));l.append(el('span','',label),control);return l}
 function input(e,key,type,ph){const i=el('input');i.type=type;i.value=e[key]??'';i.dataset.key=key;i.dataset.id=e.id;i.placeholder=ph||'';if(type==='number'){i.min='0';i.step='any';i.inputMode='decimal'}if(key==='name'){i.autocomplete='off';i.enterKeyHint='done'}return i}
 function select(e,key,items){const s=el('select');s.dataset.key=key;s.dataset.id=e.id;for(const[v,l]of items){const o=el('option','',l);o.value=v;s.append(o)}s.value=(e[key]==='Every day'?'Daily':e[key])||items[0][0];return s}
 function readout(txt,calc){const r=el('div','readout',txt||'—');r.dataset.calc=calc;return r}
 
+function pager(){
+  const bar=el('div','pager'),n=state.entries.length,e=state.entries[cur];
+  const prev=el('button','btn','← Previous'),next=el('button','btn','Next →');prev.type=next.type='button';
+  prev.dataset.pg='prev';next.dataset.pg='next';prev.disabled=cur<=0;next.disabled=cur>=n-1;
+  const lab=el('div','pg-label');lab.append(el('b','','Peptide '+(cur+1)+' of '+n),el('span','',(e&&e.name.trim())||'(unnamed)'));
+  bar.append(prev,lab,next);return bar;
+}
 function renderList(){
   const list=$('list');list.textContent='';
-  state.entries.forEach((e,i)=>{
+  if(cur>=state.entries.length)cur=state.entries.length-1;if(cur<0)cur=0;
+  list.append(pager());
+  state.entries.forEach((e,i)=>{if(i!==cur)return;
     const card=el('article','pcard');card.dataset.id=e.id;
     const head=el('div','pcard-head');head.append(el('h3','','Peptide #'+(i+1)));
     const right=el('div','right'),pill=el('span','pill');pill.dataset.calc='status';right.append(pill);
@@ -403,38 +485,34 @@ function renderList(){
     const f=el('div','field');f.append(el('span','','Finish date'),readout('—','finish'));g.append(f);
     g.append(field('OFF weeks',input(e,'offWeeks','number','e.g. 4')));
     const r=el('div','field');r.append(el('span','','Restart date'),readout('—','restart'));g.append(r);
-    g.append(field('Prescribed by (clinician)',input(e,'prescriber','text','Name')));
-    g.append(field('Source / pharmacy',input(e,'source','text','Name')));
-    g.append(field('Lot number',input(e,'lot','text','Lot #')));
     g.append(field('Reconstituted on',input(e,'reconDate','date')));
-    const dsc=field('Discard by (per label / pharmacist)',input(e,'discardDate','date'));const dn=el('div','hint');dn.dataset.calc='discardNote';dsc.append(dn);g.append(dsc);
     const ta=el('textarea');ta.placeholder='Notes…';ta.dataset.key='notes';ta.dataset.id=e.id;ta.value=e.notes||'';
     g.append(field('Notes',ta,'full'));
     card.append(g);list.append(card);
     recalc(e,card);
   });
+  list.append(pager());
 }
 function recalc(e,card){
   card=card||[...$('list').children].find(c=>c.dataset.id===e.id);if(!card)return;
   const dts=outcomeDates(e),q=k=>card.querySelector('[data-calc='+k+']');
   q('units').textContent=syringeUnits(e)||'—';q('finish').textContent=pretty(dts.finish);q('restart').textContent=pretty(dts.restart);
-  const dnote=q('discardNote');if(dnote){const dd=parseDate(e.discardDate);const past=dd&&dayDiff(new Date(),dd)>0;dnote.textContent=past?'⚠️ Past the discard date you entered':'';dnote.style.color='#b8405f';dnote.style.fontWeight='800'}
   const st=statusFor(e),p=q('status');p.className='pill '+st.cl;p.textContent=st.txt;
 }
 $('list').addEventListener('input',ev=>{const t=ev.target,k=t.dataset.key;if(!k)return;const e=state.entries.find(x=>x.id===t.dataset.id);if(!e)return;e[k]=t.value;recalc(e);save()});
 $('list').addEventListener('change',ev=>{const t=ev.target;if(!t.dataset.key)return;const e=state.entries.find(x=>x.id===t.dataset.id);if(!e)return;e[t.dataset.key]=t.value;if(t.dataset.key==='frequency'){e.days=[];renderList()}else recalc(e);save()});
 $('list').addEventListener('click',ev=>{
   const b=ev.target.closest('button');if(!b)return;
-  if(b.dataset.remove){const e=state.entries.find(x=>x.id===b.dataset.remove);if(!e)return;const doRemove=()=>{state.entries=state.entries.filter(x=>x.id!==e.id);if(!state.entries.length)state.entries=[emptyEntry()];renderList();save();toast('Removed')};if(e.name.trim())askConfirm('Remove '+e.name+' from the tracker?','Remove',doRemove);else doRemove();return}
+  if(b.dataset.pg){cur+=b.dataset.pg==='next'?1:-1;renderList();$('list').scrollIntoView({block:'start'});return}
+  if(b.dataset.remove){const e=state.entries.find(x=>x.id===b.dataset.remove);if(!e)return;const doRemove=()=>{const idx=state.entries.findIndex(x=>x.id===e.id);if(idx<=cur&&cur>0)cur--;state.entries=state.entries.filter(x=>x.id!==e.id);if(!state.entries.length)state.entries=[emptyEntry()];renderList();save();toast('Removed')};if(e.name.trim())askConfirm('Remove '+e.name+' from the tracker?','Remove',doRemove);else doRemove();return}
   if(b.dataset.day){const e=state.entries.find(x=>x.id===b.dataset.id);if(!e)return;const d=Number(b.dataset.day);
     if(e.days.includes(d))e.days=e.days.filter(x=>x!==d);
     else{const max=e.frequency==='Weekly'?1:e.frequency==='2x'?2:7;if(max===1)e.days=[];else if(e.days.length>=max){toast('Choose up to '+max+' days.');return}e.days.push(d)}
     renderList();save()}
 });
-function addEntry(){state.entries.push(emptyEntry());renderList();save();const c=$('list').lastElementChild;c.scrollIntoView({behavior:'smooth',block:'center'});c.querySelector('input').focus({preventScroll:true})}
-$('addTop').onclick=addEntry;$('addBottom').onclick=addEntry;
-$('exampleButton').onclick=()=>{const blank=state.entries.find(e=>!e.name.trim());const e=blank||emptyEntry();e.name='AOD';e.frequency='Weekdays';e.days=[];if(!blank)state.entries.push(e);renderList();save();toast('Example added: AOD → Monday to Friday. Edit or delete it anytime.')};
-$('resetButton').onclick=()=>askConfirm('Clear all peptide entries and checkmarks from this browser? This cannot be undone.','Clear all',()=>{state.entries=[emptyEntry()];state.checks={};renderList();save();toast('Tracker cleared')});
+function addEntry(){state.entries.push(emptyEntry());cur=state.entries.length-1;renderList();save();const c=$('list').querySelector('.pcard');c.scrollIntoView({behavior:'smooth',block:'center'});c.querySelector('input').focus({preventScroll:true})}
+$('addTop').onclick=addEntry;
+$('resetButton').onclick=()=>askConfirm('Clear all peptide entries and checkmarks from this browser? This cannot be undone.','Clear all',()=>{cur=0;state.entries=[emptyEntry()];state.checks={};renderList();save();toast('Tracker cleared')});
 return renderList;}
 function initSummary(){
   function render(){
@@ -449,7 +527,7 @@ function initSummary(){
       const mc=(Number(e.vialMg)>0&&Number(e.waterMl)>0)?(Number(e.vialMg)/Number(e.waterMl)):null;
       const dys=daysFor(e).map(d=>WEEK[d].slice(0,3)).join(', ');
       const od=outcomeDates(e);
-      const items=[['Vial content',e.vialMg?e.vialMg+' mg':'—'],['Liquid added',e.waterMl?e.waterMl+' mL':'—'],['Concentration',mc?(Number(mc.toFixed(5)))+' mg/mL':'—'],['Recorded dose',fmtDose(e)||'—'],['Syringe',(e.syringe||'100')==='100'?'U-100':'U-'+e.syringe],['Syringe units*',syringeUnits(e)||'—'],['Frequency',(fq[e.frequency]||'—')],['Days',dys||'—'],['Start',pretty(e.start)],['ON / OFF weeks',(e.onWeeks||'—')+' / '+(e.offWeeks||'—')],['Finish',pretty(od.finish)],['Restart',pretty(od.restart)],['Prescribed by',e.prescriber||'—'],['Source / pharmacy',e.source||'—'],['Lot number',e.lot||'—'],['Reconstituted on',pretty(e.reconDate)],['Discard by',pretty(e.discardDate)]];
+      const items=[['Vial content',e.vialMg?e.vialMg+' mg':'—'],['Liquid added',e.waterMl?e.waterMl+' mL':'—'],['Concentration',mc?(Number(mc.toFixed(5)))+' mg/mL':'—'],['Recorded dose',fmtDose(e)||'—'],['Syringe',(e.syringe||'100')==='100'?'U-100':'U-'+e.syringe],['Syringe units*',syringeUnits(e)||'—'],['Frequency',(fq[e.frequency]||'—')],['Days',dys||'—'],['Start',pretty(e.start)],['ON / OFF weeks',(e.onWeeks||'—')+' / '+(e.offWeeks||'—')],['Finish',pretty(od.finish)],['Restart',pretty(od.restart)],['Reconstituted on',pretty(e.reconDate)]];
       for(const [k,v] of items){const f=el('div','field');f.append(el('span','',k),el('div','readout',v));g.append(f)}
       if(e.notes){const f=el('div','field full');f.append(el('span','','Notes'),el('div','readout',e.notes));g.append(f)}
       card.append(g);list.append(card);
@@ -463,7 +541,7 @@ function initCalc(){
   const IDS=['calcVial','calcWater','calcDose'];
   function refreshChoices(){const s=$('calcPeptide');const old=s.value;s.replaceChildren(new Option('Custom calculation (not linked)',''));state.entries.filter(e=>e.name.trim()).forEach(e=>s.add(new Option(e.name,e.id)));if(old&&state.entries.some(e=>e.id===old&&e.name.trim()))s.value=old}
   function fillFromEntry(){const e=state.entries.find(v=>v.id===$('calcPeptide').value);$('calcSaveToRow').disabled=!e;if(!e)return;$('calcVial').value=e.vialMg||'';$('calcWater').value=e.waterMl||'';$('calcDose').value=e.dose||'';$('calcUnit').value=e.unit==='mg'?'mg':'mcg';$('calcScale').value=['100','50','40'].includes(e.syringe)?e.syringe:'100';$('calcMessage').hidden=true;update()}
-  function reset(){$('calcUnitsResult').innerHTML='— <small>units</small>';for(const id of['calcNearest','calcDeviation','calcConcentration','calcVolume','calcDoseMg','calcDoses','calcDrawnResult'])$(id).textContent='—'}
+  function reset(){$('calcUnitsResult').innerHTML='— <small>units</small>';$('calcUnitsResult').classList.add('is-empty');$('calcFill').style.width='0%';for(const id of['calcNearest','calcDeviation','calcConcentration','calcVolume','calcDoseMg','calcDoses','calcDrawnResult'])$(id).textContent='—'}
   function update(){
     $('calcMessage').hidden=true;
     const vial=Number($('calcVial').value),water=Number($('calcWater').value),dose=Number($('calcDose').value),scale=Number($('calcScale').value),size=Number($('calcSize').value),unit=$('calcUnit').value;
@@ -474,7 +552,7 @@ function initCalc(){
       reset();if(hasAll){w.textContent='Enter positive numbers for vial content, liquid volume, and dose.';w.hidden=false}
       updateDrawn(false);return}
     const show=mg=>unit==='mg'?fmt(mg,6)+' mg':fmt(mg*1000,3)+' mcg';
-    const res=$('calcUnitsResult');res.replaceChildren(document.createTextNode(fmt(r.units,3)+' '));const sm=document.createElement('small');sm.textContent='units';res.append(sm);
+    const res=$('calcUnitsResult');res.replaceChildren(document.createTextNode(fmt(r.units,3)+' '));const sm=document.createElement('small');sm.textContent='units';res.append(sm);res.classList.remove('is-empty','pop');void res.offsetWidth;res.classList.add('pop');const pct=Math.min(100,r.units/r.maxUnits*100);$('calcFill').style.width=pct+'%';$('calcFill').style.background=r.units>r.maxUnits?'#c0392b':'';$('calcMax').textContent=fmt(r.maxUnits,0)+' units ('+fmt(size,1)+' mL)';
     $('calcNearest').textContent=r.nearest+' units → '+show(r.deliveredMg);
     $('calcDeviation').textContent=(r.dev>0?'+':'')+fmt(r.dev,2)+' %';
     $('calcConcentration').textContent=fmt(r.strength,5);$('calcVolume').textContent=fmt(r.volMl,5);$('calcDoseMg').textContent=fmt(r.doseMg,6);$('calcDoses').textContent=fmt(r.theo,2);
@@ -508,10 +586,11 @@ function initCalc(){
   return ()=>{refreshChoices();update()};
 }
 load();
-const ROUTES={home:['♡ My Weekly Plan ♡','Consistency today, glow tomorrow ♡','🗓️','Weekly Plan',initHome()],tracker:['♡ My Peptide Tracker ♡','Add, edit and organise your peptides','🎀','Tracker',initTracker()],calc:['🧮 My Peptide Calculator 🧮','Concentration and syringe-scale math','🧮','Calculator',initCalc()],summary:['♡ Regimen Summary ♡','A printable overview to share with your clinician','📋','Summary',initSummary()]};
+const ROUTES={today:['♡ Today ♡','Your list for today','📅','Today',initToday()],home:['♡ My Weekly Plan ♡','Consistency today, glow tomorrow ♡','🗓️','Week',initHome()],tracker:['♡ My Peptide Tracker ♡','Add, edit and organise your peptides','🎀','Tracker',initTracker()],calc:['🧮 My Peptide Calculator 🧮','Concentration and syringe-scale math','🧮','Calculator',initCalc()],summary:['♡ Regimen Summary ♡','A printable overview to share with your clinician','📋','Summary',initSummary()]};
 document.getElementById('nav').innerHTML=Object.entries(ROUTES).map(([k,r])=>`<a href="#${k}" data-nav="${k}"><span class="ico" aria-hidden="true">${r[2]}</span><span>${r[3]}</span></a>`).join('');
-function route(key){const hh=typeof key==='string'?key:location.hash.slice(1),k=ROUTES[hh]?hh:'home',r=ROUTES[k];
+function route(key){const hh=typeof key==='string'?key:location.hash.slice(1),k=ROUTES[hh]?hh:'today',r=ROUTES[k];
  document.getElementById('bTitle').textContent=r[0];document.getElementById('bSub').textContent=r[1];
+ document.body.dataset.route=k;
  document.querySelectorAll('[data-page]').forEach(p=>p.hidden=p.dataset.page!==k);
  document.querySelectorAll('[data-nav]').forEach(a=>{a.classList.toggle('active',a.dataset.nav===k);a.toggleAttribute('aria-current',a.dataset.nav===k)});
  r[4]();window.scrollTo(0,0)}
